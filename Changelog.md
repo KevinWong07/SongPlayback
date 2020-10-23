@@ -11,3 +11,7 @@
 ### Finalized Code
 - Removed first two rows of all .csv files for better usage
 - Finished up code to best of ability
+
+## [Version 2.1]
+### Forgot to fix .csv files
+- Fixed all .csv locations
