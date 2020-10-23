@@ -3,16 +3,25 @@ import java.io.*;
 
 public class SongPlayback{
 
-    static Playlist playlist = new Playlist();
+    static Playlist list = new Playlist();
     
-    final static String[] filePath = {"\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
-                                        "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", "\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv"};
+    // list all .csv file locations
+    final static String[] filePath = {"C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-07-03--2020-07-10.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-07-10--2020-07-17.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-07-17--2020-07-24.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-07-24--2020-07-31.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-07-31--2020-08-07.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-08-07--2020-08-14.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-08-14--2020-08-21.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-08-21--2020-08-28.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-08-28--2020-09-04.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-09-04--2020-09-11.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-09-11--2020-09-18.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-09-18--2020-09-25.csv", 
+                                        "C:\\Users\\Admin\\Documents\\GitHub\\SongPlayback\\CSV\\regional-global-weekly-2020-09-25--2020-10-02.csv"};
 
+    // takes all information from above .csv files and inputs them into an array
     public SongPlayback (String[] filePath) throws IOException {
         for (String a : filePath) {
             String row = "";
@@ -30,12 +39,13 @@ public class SongPlayback{
                 }
                 artist.setSong(arr[1]);
                 artist.setArtist(arr[2]);
-                playlist.append(artist);
+                list.append(artist);
             }
             sc.close();
         }
     }
 
+    // creates playlist from the array
     public static void playList(Playlist list) throws IOException{
         Data current = list.head;
 		File file = new File("Playlist.csv");
@@ -49,11 +59,10 @@ public class SongPlayback{
 		fw.close();
 	}
 
-    public static void Main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SongPlayback playlist = new SongPlayback(filePath);
-
-        playlist.sort(playlist.head);
-        playlist.removeDuplicates();
-
+        
+        list.removeDuplicates(); // calls removeDuplicates operation from Data.java 
+        playList(list);
     }
 }

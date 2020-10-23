@@ -7,22 +7,26 @@ public class Data {
 
     public Data() {
     }
+    public Data(String name, String song) {
+		this.artist = name;
+		this.song = song;
+	}
     public void setArtist(String s) {
-        artist = s;
+        this.artist = s;
     }
     public String getArtist() {
         return artist;
     }
 
     public void setSong(String s) {
-        song = s;
+        this.song = s;
     }
     public String getSong() {
         return song;
     }
 }
 
-class Playlist {
+class Playlist extends LinkedList{
     Data head;
 
     public Playlist() {
